@@ -1,3 +1,3 @@
 export default function ButtonSettingsPage() {
-  return <div></div>;
+  return <div>Buttons Setting</div>;
 }
