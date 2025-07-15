@@ -1,6 +1,6 @@
 import { useDraggable } from "@dnd-kit/core";
 import type { Button } from "@/stores/types";
-import MoonIcon from "@/assets/moon.svg?react";
+import QuestionIcon from "@/assets/question-mark.svg?react";
 
 export default function DraggableButton({ button }: { button: Button }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -23,7 +23,7 @@ export default function DraggableButton({ button }: { button: Button }) {
       style={style}
       className="flex h-[33.3px] w-[33.3px] cursor-pointer items-center justify-center rounded-full bg-neutral-300 text-xs font-light text-neutral-600 shadow"
     >
-      <MoonIcon className="stroke-gray block h-[20.8px] w-[20.8px]" />
+      <QuestionIcon className="block h-[20.8px] w-[20.8px] stroke-neutral-500" />
     </div>
   );
 }
