@@ -1,13 +1,17 @@
-import Card from "@/components/Card";
-import VirtualToolBar from "@/components/VirtualToolBar";
-import ButtonsInList from "@/components/ButtonsInList";
+import { useState } from "react";
 import { DndContext } from "@dnd-kit/core";
 import type { DragEndEvent } from "@dnd-kit/core";
 import { useButtonStore } from "@/stores/useButtonStore";
-import { useState } from "react";
+import { useThemeStore } from "@/stores/useThemeStore";
+import Card from "@/components/Card";
+import ToggleButton from "@/components/ToggleButton";
+import ButtonIndicator from "@/components/ButtonIndicator";
+import VirtualToolBar from "@/components/VirtualToolBar";
+import ButtonsInList from "@/components/ButtonsInList";
 
 export default function ButtonSettingsPage() {
   const [isToolBarOn, setIsToolBarOn] = useState(true);
+  const { isDarkMode, setIsDarkMode } = useThemeStore();
   const setButtons = useButtonStore((state) => state.setButtons);
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -41,45 +45,23 @@ export default function ButtonSettingsPage() {
     setIsToolBarOn(!isToolBarOn);
   };
 
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
     <>
       <div className="dark:text-donutool-bright mt-5 text-2xl font-semibold text-neutral-600 transition duration-300">
         설정
       </div>
       <Card
-        children={
-          <>
-            <div
-              onClick={toggleToolBar}
-              className={`${isToolBarOn ? "bg-green-400 dark:bg-lime-600" : "dark:bg-donutool-middle bg-gray-100"} ml-auto flex h-7 w-12 cursor-pointer items-center rounded-2xl transition-all duration-300`}
-            >
-              <div
-                className={`${
-                  isToolBarOn ? "translate-x-4.5" : "translate-x-0"
-                } mx-1 h-5.5 w-5.5 rounded-full bg-white transition-transform duration-300`}
-              ></div>
-            </div>
-          </>
-        }
+        children={<ToggleButton onClick={toggleToolBar} state={isToolBarOn} />}
         title="툴바"
         width={95}
         height={5}
       />
       <Card
-        children={
-          <>
-            <div
-              onClick={toggleToolBar}
-              className={`${isToolBarOn ? "bg-green-400 dark:bg-lime-600" : "dark:bg-donutool-middle bg-gray-100"} ml-auto flex h-7 w-12 cursor-pointer items-center rounded-2xl transition-all duration-300`}
-            >
-              <div
-                className={`${
-                  isToolBarOn ? "translate-x-4.5" : "translate-x-0"
-                } mx-1 h-5.5 w-5.5 rounded-full bg-white transition-transform duration-300`}
-              ></div>
-            </div>
-          </>
-        }
+        children={<ToggleButton onClick={toggleTheme} state={isDarkMode} />}
         title="다크 테마"
         width={95}
         height={5}
@@ -89,38 +71,18 @@ export default function ButtonSettingsPage() {
           children={
             <>
               <VirtualToolBar size={250} />
-              <div className="absolute top-27 left-113 z-10 h-0.5 w-20 bg-neutral-500"></div>
-              <div className="absolute top-24 left-135 z-10 font-semibold text-neutral-500">
-                뒤로 가기
-              </div>
-              <div className="absolute top-43 left-119 z-10 h-0.5 w-20 bg-neutral-500"></div>
-              <div className="absolute top-40 left-141 z-10 font-semibold text-neutral-500">
-                앞으로 가기
-              </div>
-              <div className="absolute top-59 left-113 z-10 h-0.5 w-20 bg-neutral-500"></div>
-              <div className="absolute top-56 left-135 z-10 font-semibold text-neutral-500">
-                새 탭
-              </div>
-              <div className="absolute top-72 left-80 z-10 h-7 w-0.5 rotate-45 transform bg-neutral-500"></div>
-              <div className="absolute top-[310.3px] left-[231.8px] z-10 h-0.5 w-20 bg-neutral-500"></div>
-              <div className="absolute top-74.5 left-37 z-10 font-semibold text-neutral-500">
-                다음 탭 가기
-              </div>
-              <div className="absolute top-59 left-44 z-10 h-0.5 w-20 bg-neutral-500"></div>
-              <div className="absolute top-56 left-23 z-10 font-semibold text-neutral-500">
-                이전 탭 가기
-              </div>
+              <ButtonIndicator />
             </>
           }
-          title=""
+          title="버튼 설정"
           width={95}
           height={40}
         />
         <Card
           children={<ButtonsInList size={250} />}
-          title=""
+          title="버튼 목록"
           width={95}
-          height={30}
+          height={32.5}
         />
       </DndContext>
     </>
