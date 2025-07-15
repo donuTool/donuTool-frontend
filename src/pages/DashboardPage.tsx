@@ -14,7 +14,7 @@ export default function DashboardPage() {
       <div className="flex h-[20%] w-[95%] flex-row justify-center gap-[3%]">
         <Card
           children={
-            <div className="flex w-full flex-col">
+            <div className="dark:text-donutool-bright flex w-full flex-col text-neutral-600 transition duration-300">
               <div>사용자: {USER}</div>
               <div>로그인한 시간: {LOGGEDINTIME}</div>
               <div>사용시간: {TIMEUSED}</div>

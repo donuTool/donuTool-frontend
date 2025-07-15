@@ -12,10 +12,10 @@ function App() {
       <BackgroundPage>
         <Routes>
           <Route path="/" element={<DashboardPage />} />
-          <Route path="/buttons" element={<ButtonSettingsPage />} />
           <Route path="/help" element={<InstructionsPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/stats" element={<StatsPage />} />
+          <Route path="/buttons" element={<ButtonSettingsPage />} />
         </Routes>
       </BackgroundPage>
     </>

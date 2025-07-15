@@ -26,6 +26,7 @@ export default function VirtualToolBar({ size }: { size: number }) {
               left: `${(button.left ?? 0) * scale}px`,
               width: `${33.3 * scale}px`,
               height: `${33.3 * scale}px`,
+              zIndex: 999,
             }}
           >
             <DraggableButton button={button} scale={scale} />

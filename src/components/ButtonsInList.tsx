@@ -17,6 +17,7 @@ export default function ButtonsInList({ size }: { size: number }) {
             style={{
               width: `${33.3 * scale}px`,
               height: `${33.3 * scale}px`,
+              zIndex: 990,
             }}
           >
             <DraggableButton button={button} scale={scale} />

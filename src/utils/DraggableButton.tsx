@@ -37,7 +37,10 @@ export default function DraggableButton({
     >
       <QuestionIcon
         className={`block stroke-neutral-500`}
-        style={{ width: `${20.8 * scale}px`, height: `${20.8 * scale}px` }}
+        style={{
+          width: `${20.8 * scale}px`,
+          height: `${20.8 * scale}px`,
+        }}
       />
     </div>
   );
