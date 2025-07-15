@@ -19,7 +19,7 @@ export default function PageNavButton({
       onClick={onClick}
     >
       <div
-        className={`${active ? "dark:bg-donutool-dark bg-gray-400" : "dark:bg-donutool-button bg-gray-100"} absolute top-0 bottom-0 left-0 flex w-10 items-center justify-center rounded-full opacity-0 transition-all duration-300 group-hover:w-40 group-hover:opacity-100`}
+        className={`${active ? "dark:bg-donutool-dark bg-gray-400" : "dark:bg-donutool-button bg-gray-100"} absolute top-0 bottom-0 left-0 flex w-10 items-center justify-center overflow-hidden rounded-full whitespace-nowrap opacity-0 transition-all duration-300 group-hover:w-40 group-hover:opacity-100`}
         style={{ zIndex: 0 }}
       >
         {name}
