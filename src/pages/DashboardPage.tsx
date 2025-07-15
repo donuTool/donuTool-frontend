@@ -27,7 +27,7 @@ export default function DashboardPage() {
         <Card
           children={
             <>
-              <VirtualToolBar />
+              <VirtualToolBar size={150} />
             </>
           }
           title="버튼 세팅"

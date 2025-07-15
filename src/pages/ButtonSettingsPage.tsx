@@ -120,7 +120,7 @@ export default function ButtonSettingsPage() {
           children={<ButtonsInList size={250} />}
           title=""
           width={95}
-          height={25}
+          height={30}
         />
       </DndContext>
     </>
