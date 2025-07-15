@@ -9,4 +9,13 @@
   --color-donutool-middle: #455154;
   --color-donutool-button: #57666a;
   --color-donutool-bright: #d1d6d6;
+  --font-rix: "RixYeoljeongdo_Regular";
+}
+
+@font-face {
+  font-family: "RixYeoljeongdo_Regular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/RixYeoljeongdo_Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }

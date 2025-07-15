@@ -33,6 +33,7 @@ export default {
     "h-[35%]",
     "h-[40%]",
     "h-[45%]",
+    "h-[47%]",
     "h-[50%]",
     "h-[55%]",
     "h-[60%]",
@@ -58,7 +59,11 @@ export default {
     "h-[*px]",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        rix: ["RixYeoljeongdo_Regular"],
+      },
+    },
   },
   plugins: [],
 };
