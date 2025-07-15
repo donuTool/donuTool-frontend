@@ -27,32 +27,32 @@ export default function BackgroundPage({
           onClick={() => navigate("/")}
         />
         <PageNavButton
-          name="환경설정"
-          icon={SettingIcon}
-          top="top-17"
-          active={location.pathname === "/buttons"}
-          onClick={() => navigate("/buttons")}
-        />
-        <PageNavButton
           name="도움말"
           icon={QuestionMarkIcon}
-          top="top-30"
+          top="top-17"
           active={location.pathname === "/help"}
           onClick={() => navigate("/help")}
         />
         <PageNavButton
           name="계정"
           icon={CircleUserIcon}
-          top="top-43"
+          top="top-30"
           active={location.pathname === "/account"}
           onClick={() => navigate("/account")}
         />
         <PageNavButton
           name="통계"
           icon={ChartLineIcon}
-          top="top-56"
+          top="top-43"
           active={location.pathname === "/stats"}
           onClick={() => navigate("/stats")}
+        />
+        <PageNavButton
+          name="환경설정"
+          icon={SettingIcon}
+          top="top-56"
+          active={location.pathname === "/buttons"}
+          onClick={() => navigate("/buttons")}
         />
         <ThemeToggleButton />
       </div>
