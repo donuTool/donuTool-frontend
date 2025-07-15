@@ -7,12 +7,12 @@ export default function AccountPage() {
         계정
       </div>
       <Card children={<div></div>} title="" width={95} height={20} />
-      <div className="flex h-[20%] w-[95%] flex-row justify-center gap-[3%]">
+      <div className="flex h-[20%] w-[95%] flex-row justify-center gap-[2.5%]">
         <Card children={<div></div>} title="" width={50} height={0} />
         <Card children={<div></div>} title="" width={50} height={0} />
       </div>
       <Card children={<div></div>} title="" width={95} height={30} />
-      <div className="flex h-[15%] w-[95%] flex-row justify-center gap-[3%]">
+      <div className="flex h-[15%] w-[95%] flex-row justify-center gap-[2.5%]">
         <Card children={<div></div>} title="" width={30} height={0} />
         <Card children={<div></div>} title="" width={40} height={0} />
         <Card children={<div></div>} title="" width={30} height={0} />
