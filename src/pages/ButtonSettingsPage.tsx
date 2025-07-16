@@ -4,7 +4,7 @@ import type { DragEndEvent } from "@dnd-kit/core";
 import { useButtonStore } from "@/stores/useButtonStore";
 import { useThemeStore } from "@/stores/useThemeStore";
 import Card from "@/components/Card";
-import ToggleButton from "@/components/ToggleButton";
+import ToggleButton from "@/components/buttons/ToggleButton";
 import ButtonIndicator from "@/components/ButtonIndicator";
 import VirtualToolBar from "@/components/VirtualToolBar";
 import ButtonsInList from "@/components/ButtonsInList";
