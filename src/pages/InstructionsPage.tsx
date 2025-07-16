@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import Card from "@/components/Card";
-import QuestionIcon from "@/assets/question-mark.svg?react";
 import PlayIcon from "@/assets/circle-play.svg?react";
 
 export default function InstructionsPage() {
@@ -11,18 +11,30 @@ export default function InstructionsPage() {
       <Card
         children={
           <div className="flex h-[95%] w-[100%] translate-y-4 flex-col justify-center gap-4">
-            <div className="dark:text-donutool-bright dark:bg-donutool-button flex h-[25%] w-full items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300">
-              1. ...
-            </div>
-            <div className="dark:text-donutool-bright dark:bg-donutool-button flex h-[25%] w-full items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300">
-              2. ...
-            </div>
-            <div className="dark:text-donutool-bright dark:bg-donutool-button flex h-[25%] w-full items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300">
-              3. ...
-            </div>
-            <div className="dark:text-donutool-bright dark:bg-donutool-button flex h-[25%] w-full items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300">
-              4. ...
-            </div>
+            <Link
+              to="/help/question/1"
+              className="dark:text-donutool-bright dark:bg-donutool-button flex h-[25%] w-full items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300"
+            >
+              Q1. ...
+            </Link>
+            <Link
+              to="/help/question/2"
+              className="dark:text-donutool-bright dark:bg-donutool-button flex h-[25%] w-full items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300"
+            >
+              Q2. ...
+            </Link>
+            <Link
+              to="/help/question/3"
+              className="dark:text-donutool-bright dark:bg-donutool-button flex h-[25%] w-full items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300"
+            >
+              Q3. ...
+            </Link>
+            <Link
+              to="/help/question/4"
+              className="dark:text-donutool-bright dark:bg-donutool-button flex h-[25%] w-full items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300"
+            >
+              Q4. ...
+            </Link>
           </div>
         }
         title="자주 묻는 질문"
@@ -43,9 +55,12 @@ export default function InstructionsPage() {
         <div className="flex h-full w-[20%] flex-col gap-[6%]">
           <Card
             children={
-              <button className="group dark:bg-donutool-button dark:hover:bg-donutool-bg flex h-10 w-10 translate-x-6 cursor-pointer items-center justify-center rounded-full bg-white transition duration-300 hover:bg-neutral-300">
-                <QuestionIcon className="dark:stroke-donutool-text stroke-neutral-600 transition duration-300 group-hover:stroke-neutral-100" />
-              </button>
+              <Link
+                to="/help/contact"
+                className="dark:bg-donutool-button dark:hover:bg-donutool-bg dark:text-donutool-bright flex h-10 w-22 translate-y-4 cursor-pointer items-center justify-center rounded-xl bg-white font-semibold text-neutral-600 transition duration-300 hover:bg-neutral-300 hover:text-white"
+              >
+                문의하기
+              </Link>
             }
             title="문의"
             width={100}
@@ -53,7 +68,7 @@ export default function InstructionsPage() {
           />
           <Card
             children={
-              <div className="dark:text-donutool-bright translate-x-5.5 font-semibold text-neutral-600 transition duration-300">
+              <div className="dark:text-donutool-bright translate-y-3 font-semibold text-neutral-600 transition duration-300">
                 1.0.0
               </div>
             }
@@ -82,7 +97,7 @@ export default function InstructionsPage() {
         }
         title="커뮤니티"
         width={95}
-        height={15}
+        height={17}
       />
     </>
   );
