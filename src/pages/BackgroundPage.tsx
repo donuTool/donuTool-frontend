@@ -1,6 +1,9 @@
+import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import ThemeToggleButton from "@/components/ThemeToggleButton";
-import PageNavButton from "@/components/PageNavButton";
+import { useUserStore } from "@/stores/useUserStore";
+import { fetchUser } from "@/utils/fetchUser";
+import ThemeToggleButton from "@/components/buttons/ThemeToggleButton";
+import PageNavButton from "@/components/buttons/PageNavButton";
 import DashboardIcon from "@/assets/dashboard.svg?react";
 import QuestionMarkIcon from "@/assets/question-mark.svg?react";
 import CircleUserIcon from "@/assets/circle-user.svg?react";
@@ -15,11 +18,33 @@ export default function BackgroundPage({
   const location = useLocation();
   const navigate = useNavigate();
 
+  const setUser = useUserStore((state) => state.setUser);
+  const params = new URLSearchParams(window.location.search);
+  const googleId = params.get("googleId");
+
+  useEffect(() => {
+    if (googleId) {
+      (async () => {
+        try {
+          const userData = await fetchUser(googleId);
+          setUser({
+            googleId: userData.googleId,
+            buttonsSetting: userData.buttonsSetting,
+            isDarkMode: userData.isDarkMode,
+            addressOfNewTab: userData.addressOfNewTab,
+          });
+        } catch (error) {
+          console.error("Failed to fetch user data:", error);
+        }
+      })();
+    }
+  });
+
   return (
     <div className="dark:bg-donutool-bg absolute -z-50 flex h-full w-full items-center justify-center bg-gray-300 transition duration-300">
       <div className="dark:bg-donutool-button relative -z-40 flex h-[95%] w-[50%] flex-col items-center justify-start gap-4 rounded-2xl bg-white shadow-2xl transition duration-300">
         {children}
-        <div className="dark:text-donutool-button font-rix absolute top-27 -left-36 rotate-270 transform text-5xl font-black tracking-[-0.067em] text-gray-400 transition duration-300">
+        <div className="dark:text-donutool-button font-rix absolute top-27 -left-36 rotate-270 transform text-5xl font-black tracking-[-0.067em] text-white transition duration-300">
           donuTool
         </div>
         <PageNavButton
