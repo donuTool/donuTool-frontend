@@ -3,6 +3,8 @@ import { DndContext } from "@dnd-kit/core";
 import type { DragEndEvent } from "@dnd-kit/core";
 import { useButtonStore } from "@/stores/useButtonStore";
 import { useThemeStore } from "@/stores/useThemeStore";
+import { useUserStore } from "@/stores/useUserStore";
+import type { Button } from "@/stores/types";
 import Card from "@/components/Card";
 import ToggleButton from "@/components/buttons/ToggleButton";
 import ButtonIndicator from "@/components/ButtonIndicator";
@@ -12,6 +14,7 @@ import ButtonsInList from "@/components/ButtonsInList";
 export default function ButtonSettingsPage() {
   const [isToolBarOn, setIsToolBarOn] = useState(true);
   const { isDarkMode, setIsDarkMode } = useThemeStore();
+  const { googleId, buttonsSetting, setButtonsSetting } = useUserStore();
   const setButtons = useButtonStore((state) => state.setButtons);
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -21,7 +24,7 @@ export default function ButtonSettingsPage() {
     const activeId = String(active.id);
     const overId = String(over.id);
 
-    setButtons((prev) => {
+    const updateButtons = (prev: Button[]) => {
       const activeIndex = prev.findIndex((btn) => btn.id === activeId);
       const overIndex = prev.findIndex((btn) => btn.id === overId);
 
@@ -38,7 +41,20 @@ export default function ButtonSettingsPage() {
       newButtons[overIndex].image = temp.image;
 
       return newButtons;
-    });
+    };
+
+    if (buttonsSetting.length > 0) {
+      setButtonsSetting(updateButtons);
+      fetch(`http://localhost:3001/api/user/${googleId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ buttonsSetting: updateButtons }),
+      }).catch((err) =>
+        console.error("Failed to update buttonsSetting to server:", err),
+      );
+    } else {
+      setButtons(updateButtons);
+    }
   };
 
   const toggleToolBar = () => {

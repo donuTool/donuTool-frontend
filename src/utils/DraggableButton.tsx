@@ -1,6 +1,5 @@
 import { useDraggable } from "@dnd-kit/core";
 import type { Button } from "@/stores/types";
-import QuestionIcon from "@/assets/question-mark.svg?react";
 
 export default function DraggableButton({
   button,
@@ -35,13 +34,11 @@ export default function DraggableButton({
       style={style}
       className={`flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-neutral-300 text-xs font-light text-neutral-600 shadow`}
     >
-      <QuestionIcon
-        className={`block stroke-neutral-500`}
-        style={{
-          width: `${20.8 * scale}px`,
-          height: `${20.8 * scale}px`,
-        }}
-      />
+      <img
+        className="h-[60%] w-[60%]"
+        src={new URL(`../assets/${button.image}.svg`, import.meta.url).href}
+        alt={button.image}
+      />{" "}
     </div>
   );
 }

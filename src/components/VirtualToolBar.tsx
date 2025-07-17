@@ -1,9 +1,11 @@
+import { useUserStore } from "@/stores/useUserStore";
 import { useButtonStore } from "@/stores/useButtonStore";
 import donuToolBar from "@/assets/donuToolBar.png";
 import DroppableArea from "@/utils/DroppableArea";
 import DraggableButton from "@/utils/DraggableButton";
 
 export default function VirtualToolBar({ size }: { size: number }) {
+  const buttonsSetting = useUserStore((state) => state.buttonsSetting);
   const buttons = useButtonStore((state) => state.buttons);
   const scale = size / 150;
 
@@ -14,7 +16,7 @@ export default function VirtualToolBar({ size }: { size: number }) {
         draggable={false}
         className={`h-[${size}px] w-[${size}px] brightness-[1.15]`}
       />
-      {buttons
+      {(buttonsSetting.length > 0 ? buttonsSetting : buttons)
         .filter((button) => button.status === "IN_TOOLBAR")
         .map((button) => (
           <DroppableArea

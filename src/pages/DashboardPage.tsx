@@ -1,10 +1,13 @@
 import Card from "@/components/Card";
 import VirtualToolBar from "@/components/VirtualToolBar";
+import { useUserStore } from "@/stores/useUserStore";
 
 export default function DashboardPage() {
   const USER = "박재연";
   const LOGGEDINTIME = "21:34:04";
   const TIMEUSED = "00:05:31";
+
+  const googleId = useUserStore((state) => state.googleId);
 
   return (
     <>
@@ -14,8 +17,8 @@ export default function DashboardPage() {
       <div className="flex h-[20%] w-[95%] flex-row justify-center gap-[2.5%]">
         <Card
           children={
-            <div className="dark:text-donutool-bright flex w-full flex-col text-neutral-600 transition duration-300">
-              <div>사용자: {USER}</div>
+            <div className="dark:text-donutool-bright flex w-full translate-x-1 flex-col font-medium text-neutral-600 transition duration-300">
+              <div>사용자: {googleId ? googleId : USER}</div>
               <div>로그인한 시간: {LOGGEDINTIME}</div>
               <div>사용시간: {TIMEUSED}</div>
             </div>
