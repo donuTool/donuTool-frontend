@@ -1,7 +1,8 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 type DonutBarProps = {
   values: number[];
@@ -23,6 +24,7 @@ export default function DonutBar({ values }: DonutBarProps) {
     labels: normalizedValues.map((_, idx) => `항목 ${idx + 1}`),
     datasets: [
       {
+        label: "횟수",
         data: normalizedValues,
         backgroundColor: colors.slice(0, normalizedValues.length),
         borderWidth: 0,
@@ -35,6 +37,10 @@ export default function DonutBar({ values }: DonutBarProps) {
     plugins: {
       legend: {
         display: false,
+      },
+      datalabels: {
+        color: "#e8e8e8",
+        font: { weight: "bold" as const },
       },
       tooltip: {
         enabled: true,

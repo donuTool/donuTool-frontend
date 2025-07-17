@@ -30,13 +30,13 @@ export default function TimeGraph({ values, color }: TimeGraphProps) {
     labels: values.map((_, idx) => `${idx + 1}시`),
     datasets: [
       {
-        label: "Value",
+        label: "시간",
         data: values,
-        fill: true,
+        fill: "start",
         borderColor: color,
         backgroundColor: color,
         tension: 0.3,
-        pointRadius: 0,
+        pointRadius: 3,
         pointHoverRadius: 6,
       },
     ],
@@ -58,6 +58,9 @@ export default function TimeGraph({ values, color }: TimeGraphProps) {
         ticks: {
           autoSkip: true,
           maxTicksLimit: 12,
+          font: {
+            weight: "bold" as const,
+          },
         },
       },
       y: {
@@ -71,14 +74,24 @@ export default function TimeGraph({ values, color }: TimeGraphProps) {
         grid: {
           display: false,
         },
+        ticks: {
+          font: {
+            weight: "bold" as const,
+          },
+        },
       },
     },
     plugins: {
       legend: {
         display: false,
       },
+      datalabels: {
+        color: "#666666",
+        font: { weight: "bold" as const },
+        align: "top" as const,
+      },
       tooltip: {
-        enabled: false,
+        enabled: true,
       },
     },
   };

@@ -17,6 +17,8 @@ export default function StatsPage() {
                 { length: 3 },
                 () => Math.floor(Math.random() * 100) + 1,
               )}
+              names={["뒤로 가기", "새 탭", "화면 캡쳐"]}
+              axis="y"
             />
           }
           title="가장 많이 쓴 버튼 TOP 3"
@@ -42,7 +44,7 @@ export default function StatsPage() {
           <TimeGraph
             values={Array.from(
               { length: 24 },
-              () => Math.floor(Math.random() * 24) + 1,
+              () => Math.floor(Math.random() * 22) + 1,
             )}
             color="#FF6384"
           />
@@ -53,18 +55,24 @@ export default function StatsPage() {
       />
       <Card
         children={
-          <TimeGraph
+          <StickBars
             values={Array.from(
-              { length: 24 },
-              () => Math.floor(Math.random() * 24) + 1,
+              { length: 3 },
+              () => Math.floor(Math.random() * 100) + 1,
             )}
-            color="#36A2EB"
+            names={["네이버", "Google", "YouTube"]}
+            axis="x"
           />
         }
-        title="전체 사용 시간"
+        title="자주 방문한 웹사이트 TOP 3"
         width={95}
         height={25}
       />
+      <div className="flex w-[95%] justify-end">
+        <button className="cursor-pointer rounded-lg bg-gray-200 px-3.5 py-1 text-neutral-600">
+          데이터 지우기
+        </button>
+      </div>
     </>
   );
 }

@@ -20,14 +20,16 @@ ChartJS.register(
 
 interface StickBarsProps {
   values: number[];
+  names: string[];
+  axis: "x" | "y";
 }
 
-export default function StickBars({ values }: StickBarsProps) {
+export default function StickBars({ values, names, axis }: StickBarsProps) {
   const data = {
-    labels: ["뒤로 가기", "새 탭", "화면 캡쳐"],
+    labels: names,
     datasets: [
       {
-        label: "값",
+        label: "횟수",
         data: values,
         backgroundColor: ["#60A5FA", "#34D399", "#FBBF24"],
         borderRadius: 4,
@@ -37,7 +39,7 @@ export default function StickBars({ values }: StickBarsProps) {
   };
 
   const options = {
-    indexAxis: "y" as const,
+    indexAxis: axis,
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -47,22 +49,42 @@ export default function StickBars({ values }: StickBarsProps) {
         grid: {
           display: false,
         },
+        ticks: {
+          font: {
+            weight: "bold" as const,
+          },
+        },
       },
       y: {
         display: true,
+        max: 100,
         grid: {
           display: false,
+        },
+        ticks: {
+          font: {
+            weight: "bold" as const,
+          },
         },
       },
     },
     plugins: {
       legend: { display: false },
-      tooltip: { enabled: false },
+      datalabels: {
+        color: "#e8e8e8",
+        font: { weight: "bold" as const },
+        anchor: "start" as const,
+        align: "start" as const,
+        offset: -20,
+      },
+      tooltip: { enabled: true },
     },
   };
 
   return (
-    <div className="relative h-60 w-[98%] translate-y-3 py-6 saturate-50">
+    <div
+      className={`relative ${options.indexAxis === "y" ? "h-60 w-[98%] translate-y-3" : "h-50 w-[98%] translate-y-4"} py-6 saturate-50`}
+    >
       <Bar data={data} options={options} />
     </div>
   );
