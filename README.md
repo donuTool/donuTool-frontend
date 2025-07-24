@@ -1,16 +1,20 @@
 # donuTool
 
+<br>
+<br>
+
 ![donuTool](/public/donuTool-main-picture.png)
+
+<br>
 
 <div align="center">
 
 donuTool은 가벼우면서도 강력한 플로팅 툴바로, 커서를 자동으로 따라다니며,사용자가 원하는 순간에<br>바로 도구에 접근할 수 있도록 설계되었기에 화면을 옮겨 다니거나 메뉴를 찾느라 시간을 낭비할 필요가 없습니다.<br>필요한 도구를 ‘찾아가는’ 것이 아니라, 도구가 ‘사용자에게 찾아오는’ 경험을 제공합니다.<br>donuTool로 작업 흐름을 방해받지 않고, 필요한 도구를 바로 꺼내 쓸 수 있는 새로운 방식을 경험해 보세요.
 
-<br>
-<br>
-<br>
-
 </div>
+
+<br>
+<br>
 
 # 목차
 
@@ -25,7 +29,6 @@ donuTool은 가벼우면서도 강력한 플로팅 툴바로, 커서를 자동�
 - [🗓️ 기간](#️-기간)
 - [📝 소감](#-소감)
 
-<br>
 <br>
 <br>
 
@@ -52,7 +55,6 @@ donuTool은 가벼우면서도 강력한 플로팅 툴바로, 커서를 자동�
 
 <br>
 <br>
-<br>
 
 # 📖 프리뷰
 
@@ -70,7 +72,6 @@ donuTool은 가벼우면서도 강력한 플로팅 툴바로, 커서를 자동�
 - 도움말: 사용자 가이드 및 자주 묻는 질문(FAQ) 등 지원 문서
 - 계정: 사용자 계정에 저장되어 있는 정보 관리 및 초기화 기능을 제공하는 화면
 
-<br>
 <br>
 <br>
 
@@ -94,7 +95,6 @@ donuTool은 가벼우면서도 강력한 플로팅 툴바로, 커서를 자동�
 [![Axios](https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)](https://axios-http.com/kr/docs/intro)
 [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white)](https://www.mongodb.com/)
 
-<br>
 <br>
 <br>
 
@@ -156,7 +156,6 @@ Chrome 웹스토어에서 설치한 뒤 실행하면 표시되는 확장프로�
 - 설정 페이지
   - 도구의 레이아웃, 버튼 구성, 사용자 테마 설정 등 개인화 기능
 
-<br>
 <br>
 <br>
 
