@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUserStore } from "@/stores/useUserStore";
+import { useTranslation } from "react-i18next";
 import { fetchUser } from "@/utils/fetchUser";
 import ThemeToggleButton from "@/components/buttons/ThemeToggleButton";
 import PageNavButton from "@/components/buttons/PageNavButton";
@@ -15,6 +16,7 @@ export default function BackgroundPage({
 }: {
   children: React.ReactNode;
 }) {
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -48,35 +50,35 @@ export default function BackgroundPage({
           donuTool
         </div>
         <PageNavButton
-          name="대시보드"
+          name={t("dashboard")}
           icon={DashboardIcon}
           top="top-4"
           active={location.pathname === "/"}
           onClick={() => navigate("/")}
         />
         <PageNavButton
-          name="도움말"
+          name={t("help")}
           icon={QuestionMarkIcon}
           top="top-17"
           active={location.pathname === "/help"}
           onClick={() => navigate("/help")}
         />
         <PageNavButton
-          name="계정"
+          name={t("account")}
           icon={CircleUserIcon}
           top="top-30"
           active={location.pathname === "/account"}
           onClick={() => navigate("/account")}
         />
         <PageNavButton
-          name="통계"
+          name={t("stats")}
           icon={ChartLineIcon}
           top="top-43"
           active={location.pathname === "/stats"}
           onClick={() => navigate("/stats")}
         />
         <PageNavButton
-          name="환경설정"
+          name={t("settings")}
           icon={SettingIcon}
           top="top-56"
           active={location.pathname === "/buttons"}

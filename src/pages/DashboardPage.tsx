@@ -1,8 +1,10 @@
 import Card from "@/components/Card";
 import VirtualToolBar from "@/components/VirtualToolBar";
 import { useUserStore } from "@/stores/useUserStore";
+import { useTranslation } from "react-i18next";
 
 export default function DashboardPage() {
+  const { t } = useTranslation();
   const USER = "박재연";
   const LOGGEDINTIME = "21:34:04";
   const TIMEUSED = "00:05:31";
@@ -12,18 +14,24 @@ export default function DashboardPage() {
   return (
     <>
       <div className="dark:text-donutool-bright mt-5 text-2xl font-semibold text-neutral-600 transition duration-300">
-        대시보드
+        {t("dashboard")}
       </div>
       <div className="flex h-[20%] w-[95%] flex-row justify-center gap-[2.5%]">
         <Card
           children={
             <div className="dark:text-donutool-bright flex w-full translate-x-1 flex-col font-medium text-neutral-600 transition duration-300">
-              <div>사용자: {googleId ? googleId : USER}</div>
-              <div>로그인한 시간: {LOGGEDINTIME}</div>
-              <div>사용시간: {TIMEUSED}</div>
+              <div>
+                {t("user")}: {googleId ? googleId : USER}
+              </div>
+              <div>
+                {t("loggedInTime")}: {LOGGEDINTIME}
+              </div>
+              <div>
+                {t("usedTime")}: {TIMEUSED}
+              </div>
             </div>
           }
-          title={`${USER}님, 환영합니다!`}
+          title={t("welcome", { name: USER })}
           width={70}
           height={0}
         />
@@ -33,7 +41,7 @@ export default function DashboardPage() {
               <VirtualToolBar size={150} />
             </>
           }
-          title="버튼 세팅"
+          title={t("buttonsSetting")}
           width={30}
           height={0}
         />

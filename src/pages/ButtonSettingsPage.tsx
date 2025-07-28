@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { DndContext } from "@dnd-kit/core";
 import type { DragEndEvent } from "@dnd-kit/core";
 import { useButtonStore } from "@/stores/useButtonStore";
@@ -12,6 +13,8 @@ import VirtualToolBar from "@/components/VirtualToolBar";
 import ButtonsInList from "@/components/ButtonsInList";
 
 export default function ButtonSettingsPage() {
+  const { t } = useTranslation();
+
   const [isToolBarOn, setIsToolBarOn] = useState(true);
   const { isDarkMode, setIsDarkMode } = useThemeStore();
   const { googleId, buttonsSetting, setButtonsSetting } = useUserStore();
@@ -68,17 +71,17 @@ export default function ButtonSettingsPage() {
   return (
     <>
       <div className="dark:text-donutool-bright mt-5 text-2xl font-semibold text-neutral-600 transition duration-300">
-        설정
+        {t("settings")}
       </div>
       <Card
         children={<ToggleButton onClick={toggleToolBar} state={isToolBarOn} />}
-        title="툴바"
+        title={t("toolBar")}
         width={95}
         height={5}
       />
       <Card
         children={<ToggleButton onClick={toggleTheme} state={isDarkMode} />}
-        title="다크 테마"
+        title={t("darkTheme")}
         width={95}
         height={5}
       />
@@ -90,13 +93,13 @@ export default function ButtonSettingsPage() {
               <ButtonIndicator />
             </>
           }
-          title="버튼 설정"
+          title={t("buttonsSettings")}
           width={95}
           height={40}
         />
         <Card
           children={<ButtonsInList size={250} />}
-          title="버튼 목록"
+          title={t("buttonsList")}
           width={95}
           height={32.5}
         />

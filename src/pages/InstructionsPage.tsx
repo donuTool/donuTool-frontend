@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Card from "@/components/Card";
 import PlayIcon from "@/assets/circle-play.svg?react";
 
 export default function InstructionsPage() {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="dark:text-donutool-bright mt-5 text-2xl font-semibold text-neutral-600 transition duration-300">
-        도움말
+        {t("help")}
       </div>
       <Card
         children={
@@ -37,7 +40,7 @@ export default function InstructionsPage() {
             </Link>
           </div>
         }
-        title="자주 묻는 질문"
+        title={t("faq")}
         width={95}
         height={40}
       />
@@ -48,7 +51,7 @@ export default function InstructionsPage() {
               <PlayIcon className="h-12 w-12 cursor-pointer stroke-neutral-200" />
             </div>
           }
-          title="빠른 시작 가이드"
+          title={t("quickStartGuide")}
           width={80}
           height={0}
         />
@@ -59,10 +62,10 @@ export default function InstructionsPage() {
                 to="/help/contact"
                 className="dark:bg-donutool-button dark:hover:bg-donutool-bg dark:text-donutool-bright flex h-10 w-22 translate-y-4 cursor-pointer items-center justify-center rounded-xl bg-white font-semibold text-neutral-600 transition duration-300 hover:bg-neutral-300 hover:text-white"
               >
-                문의하기
+                {t("contact")}
               </Link>
             }
-            title="문의"
+            title={t("contactUs")}
             width={100}
             height={47}
           />
@@ -72,7 +75,7 @@ export default function InstructionsPage() {
                 1.0.0
               </div>
             }
-            title="버전"
+            title={t("version")}
             width={100}
             height={47}
           />
@@ -95,7 +98,7 @@ export default function InstructionsPage() {
             </button>
           </div>
         }
-        title="커뮤니티"
+        title={t("community")}
         width={95}
         height={17}
       />

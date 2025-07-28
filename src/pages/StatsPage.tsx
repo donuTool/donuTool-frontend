@@ -1,13 +1,16 @@
+import { useTranslation } from "react-i18next";
 import Card from "@/components/Card";
 import DonutBar from "@/components/graphs/DonutBar";
 import StickBars from "@/components/graphs/StickBar";
 import TimeGraph from "@/components/graphs/TimeGraph";
 
 export default function StatsPage() {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="dark:text-donutool-bright mt-5 text-2xl font-semibold text-neutral-600 transition duration-300">
-        통계
+        {t("stats")}
       </div>
       <div className="flex h-[30%] w-[95%] flex-row justify-center gap-[2.5%]">
         <Card
@@ -21,7 +24,7 @@ export default function StatsPage() {
               axis="y"
             />
           }
-          title="가장 많이 쓴 버튼 TOP 3"
+          title={t("topThreeButtons")}
           width={50}
           height={0}
         />
@@ -34,7 +37,7 @@ export default function StatsPage() {
               )}
             />
           }
-          title="최근 7일 각 버튼 클릭 횟수"
+          title={t("recentUsedButtons")}
           width={50}
           height={0}
         />
@@ -49,7 +52,7 @@ export default function StatsPage() {
             color="#FF6384"
           />
         }
-        title="하루 사용 시간"
+        title={t("usedTimePerDay")}
         width={95}
         height={25}
       />
@@ -64,13 +67,13 @@ export default function StatsPage() {
             axis="x"
           />
         }
-        title="자주 방문한 웹사이트 TOP 3"
+        title={t("frequentlyVisitedWebsites")}
         width={95}
         height={25}
       />
       <div className="flex w-[95%] justify-end">
         <button className="cursor-pointer rounded-lg bg-gray-200 px-3.5 py-1 text-neutral-600">
-          데이터 지우기
+          {t("eraseData")}
         </button>
       </div>
     </>
