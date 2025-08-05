@@ -66,9 +66,13 @@ donuTool은 가벼우면서도 강력한 플로팅 툴바로, 커서를 자동�
 
 ![donuTool-preview](/public/donuTool-preview.gif)
 
-### 웹과 확장프로그램 스크린샷
+### 웹 대시보드 스크린샷
 
-![donuTool-screenshot](/public/donuTool-screenshot.png)
+![donuTool-screenshot](/public/donuTool-screenshot-1.png)
+
+### 확장프로그램 팝업 페이지 스크린샷
+
+![donuTool-screenshot](/public/donuTool-screenshot-2.png)
 
 ### ⚠️ 현재 아래 기능은 개발 중이며, 향후 업데이트에서 제공될 예정입니다:
 
