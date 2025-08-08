@@ -8,7 +8,6 @@ import { useUserStore } from "@/stores/useUserStore";
 import type { Button } from "@/stores/types";
 import Card from "@/components/Card";
 import ToggleButton from "@/components/buttons/ToggleButton";
-import ButtonIndicator from "@/components/ButtonIndicator";
 import VirtualToolBar from "@/components/VirtualToolBar";
 import ButtonsInList from "@/components/ButtonsInList";
 
@@ -90,7 +89,7 @@ export default function ButtonSettingsPage() {
           children={
             <>
               <VirtualToolBar size={250} />
-              <ButtonIndicator />
+              {/* <ButtonIndicator /> */}
             </>
           }
           title={t("buttonsSettings")}
