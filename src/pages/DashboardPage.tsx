@@ -38,7 +38,7 @@ export default function DashboardPage() {
         <Card
           children={
             <>
-              <VirtualToolBar size={150} />
+              <VirtualToolBar size={150} showIndicators={false} />
             </>
           }
           title={t("buttonsSetting")}

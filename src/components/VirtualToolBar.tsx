@@ -6,7 +6,13 @@ import DroppableArea from "@/utils/DroppableArea";
 import DraggableButton from "@/utils/DraggableButton";
 import ButtonIndicator from "@/components/ButtonIndicator";
 
-export default function VirtualToolBar({ size }: { size: number }) {
+export default function VirtualToolBar({
+  size,
+  showIndicators,
+}: {
+  size: number;
+  showIndicators: boolean;
+}) {
   const buttonsSetting = useUserStore((state) => state.buttonsSetting);
   const buttons = useButtonStore((state) => state.buttons);
   const scale = size / 150;
@@ -38,18 +44,19 @@ export default function VirtualToolBar({ size }: { size: number }) {
             </DroppableArea>
           </React.Fragment>
         ))}
-      {(buttonsSetting.length > 0 ? buttonsSetting : buttons)
-        .filter((button) => button.status === "IN_TOOLBAR")
-        .map((button, index) => (
-          <React.Fragment key={button.id}>
-            <ButtonIndicator
-              id={button.id}
-              top={(button.top ?? 0) * scale + 26}
-              left={(button.left ?? 0) * scale + 60}
-              index={index}
-            />
-          </React.Fragment>
-        ))}
+      {showIndicators &&
+        (buttonsSetting.length > 0 ? buttonsSetting : buttons)
+          .filter((button) => button.status === "IN_TOOLBAR")
+          .map((button, index) => (
+            <React.Fragment key={button.id}>
+              <ButtonIndicator
+                id={button.id}
+                top={(button.top ?? 0) * scale + 26}
+                left={(button.left ?? 0) * scale + 60}
+                index={index}
+              />
+            </React.Fragment>
+          ))}
     </div>
   );
 }
