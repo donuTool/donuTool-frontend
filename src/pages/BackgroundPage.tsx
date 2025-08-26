@@ -57,32 +57,32 @@ export default function BackgroundPage({
           onClick={() => navigate("/")}
         />
         <PageNavButton
+          name={t("settings")}
+          icon={SettingIcon}
+          top="top-17"
+          active={location.pathname === "/buttons"}
+          onClick={() => navigate("/buttons")}
+        />
+        <PageNavButton
+          name={t("stats")}
+          icon={ChartLineIcon}
+          top="top-30"
+          active={location.pathname === "/stats"}
+          onClick={() => navigate("/stats")}
+        />
+        <PageNavButton
           name={t("help")}
           icon={QuestionMarkIcon}
-          top="top-17"
+          top="top-43"
           active={location.pathname === "/help"}
           onClick={() => navigate("/help")}
         />
         <PageNavButton
           name={t("account")}
           icon={CircleUserIcon}
-          top="top-30"
+          top="top-56"
           active={location.pathname === "/account"}
           onClick={() => navigate("/account")}
-        />
-        <PageNavButton
-          name={t("stats")}
-          icon={ChartLineIcon}
-          top="top-43"
-          active={location.pathname === "/stats"}
-          onClick={() => navigate("/stats")}
-        />
-        <PageNavButton
-          name={t("settings")}
-          icon={SettingIcon}
-          top="top-56"
-          active={location.pathname === "/buttons"}
-          onClick={() => navigate("/buttons")}
         />
         <ThemeToggleButton />
       </div>

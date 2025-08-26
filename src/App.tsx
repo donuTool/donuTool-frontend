@@ -19,30 +19,38 @@ function App() {
       <BackgroundPage>
         <Routes>
           <Route path="/" element={<DashboardPage />} />
+          <Route path="/buttons" element={<ButtonSettingsPage />} />
+          <Route path="/stats" element={<StatsPage />} />
           <Route path="/help" element={<InstructionsPage />} />
           <Route
             path="/help/question/1"
-            element={<QuestionPage title={t("question", { number: 1 })} />}
+            element={
+              <QuestionPage title={t("question", { number: 1 })} content={""} />
+            }
           />
           <Route
             path="/help/question/2"
-            element={<QuestionPage title={t("question", { number: 2 })} />}
+            element={
+              <QuestionPage title={t("question", { number: 2 })} content={""} />
+            }
           />
           <Route
             path="/help/question/3"
-            element={<QuestionPage title={t("question", { number: 3 })} />}
+            element={
+              <QuestionPage title={t("question", { number: 3 })} content={""} />
+            }
           />
           <Route
             path="/help/question/4"
-            element={<QuestionPage title={t("question", { number: 4 })} />}
+            element={
+              <QuestionPage title={t("question", { number: 4 })} content={""} />
+            }
           />
           <Route
             path="/help/contact"
-            element={<QuestionPage title={t("contactUs")} />}
+            element={<QuestionPage title={t("contactUs")} content={""} />}
           />
           <Route path="/account" element={<AccountPage />} />
-          <Route path="/stats" element={<StatsPage />} />
-          <Route path="/buttons" element={<ButtonSettingsPage />} />
         </Routes>
       </BackgroundPage>
     </>

@@ -20,6 +20,7 @@
   "version": "버전",
   "community": "커뮤니티",
   "question": "질문 {{number}}",
+  "comingSoon": "추가 예정",
   "topThreeButtons": "가장 많이 쓴 버튼 TOP 3",
   "recentUsedButtons": "최근 7일 간 버튼 클릭 횟수",
   "usedTimePerDay": "하루 사용 시간",

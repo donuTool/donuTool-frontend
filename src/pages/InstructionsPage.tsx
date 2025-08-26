@@ -18,25 +18,25 @@ export default function InstructionsPage() {
               to="/help/question/1"
               className="dark:text-donutool-bright dark:bg-donutool-button flex h-[25%] w-full items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300"
             >
-              Q1. ...
+              Q1. 문제가 발생했을 때 문의는 어떻게 하나요?
             </Link>
             <Link
               to="/help/question/2"
               className="dark:text-donutool-bright dark:bg-donutool-button flex h-[25%] w-full items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300"
             >
-              Q2. ...
+              Q2. {t("comingSoon")}
             </Link>
             <Link
               to="/help/question/3"
               className="dark:text-donutool-bright dark:bg-donutool-button flex h-[25%] w-full items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300"
             >
-              Q3. ...
+              Q3. {t("comingSoon")}
             </Link>
             <Link
               to="/help/question/4"
               className="dark:text-donutool-bright dark:bg-donutool-button flex h-[25%] w-full items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300"
             >
-              Q4. ...
+              Q4. {t("comingSoon")}
             </Link>
           </div>
         }
@@ -84,16 +84,36 @@ export default function InstructionsPage() {
       <Card
         children={
           <div className="flex flex-row gap-7">
-            <button className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-2xl bg-neutral-400 text-xs font-semibold text-neutral-100">
+            <button
+              className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-2xl bg-neutral-400 text-xs font-semibold text-neutral-100"
+              onClick={() => {
+                window.open("https://github.com/donuTool", "_blank");
+              }}
+            >
               GitHub
             </button>
-            <button className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-2xl bg-neutral-400 text-xs font-semibold text-neutral-100">
+            <button
+              className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-2xl bg-neutral-400 text-xs font-semibold text-neutral-100"
+              onClick={() => {
+                alert(t("comingSoon"));
+              }}
+            >
               Discord
             </button>
-            <button className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-2xl bg-neutral-400 text-xs font-semibold text-neutral-100">
+            <button
+              className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-2xl bg-neutral-400 text-xs font-semibold text-neutral-100"
+              onClick={() => {
+                alert(t("comingSoon"));
+              }}
+            >
               YouTube
             </button>
-            <button className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-2xl bg-neutral-400 text-xs font-semibold text-neutral-100">
+            <button
+              className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-2xl bg-neutral-400 text-xs font-semibold text-neutral-100"
+              onClick={() => {
+                alert(t("comingSoon"));
+              }}
+            >
               Instagram
             </button>
           </div>

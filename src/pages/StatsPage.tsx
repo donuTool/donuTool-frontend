@@ -75,7 +75,7 @@ export default function StatsPage() {
       />
       <div className="flex w-[95%] justify-end">
         <button
-          className={`dark:bg-donutool-middle dark:text-donutool-text rounded-lg bg-gray-200 px-3.5 py-1 text-neutral-600 transition duration-300 ${isDataErased ? "cursor-not-allowed" : "cursor-pointer"}`}
+          className={`dark:bg-donutool-middle dark:text-donutool-text rounded-lg bg-gray-200 px-3.5 py-1 font-semibold text-neutral-600 transition duration-300 ${isDataErased ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
           onClick={() => {
             if (isDataErased) return;
 

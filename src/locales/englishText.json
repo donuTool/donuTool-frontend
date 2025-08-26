@@ -20,6 +20,7 @@
   "version": "Version",
   "community": "Community",
   "question": "Question {{number}}",
+  "comingSoon": "Coming Soon",
   "topThreeButtons": "Top 3 Most Used Buttons",
   "recentUsedButtons": "Button Clicks in the Last 7 Days",
   "usedTimePerDay": "Daily Usage Time",
