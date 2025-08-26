@@ -6,7 +6,8 @@ import InstructionsPage from "@/pages/InstructionsPage";
 import AccountPage from "@/pages/AccountPage";
 import StatsPage from "@/pages/StatsPage";
 import BackgroundPage from "@/pages/BackgroundPage";
-import QuestionPage from "./pages/QuestionPage";
+import QuestionPage from "@/pages/QuestionPage";
+import AlertModal from "@/components/AlertModal";
 import "@/utils/i18n.ts";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <>
+      <AlertModal />
       <BackgroundPage>
         <Routes>
           <Route path="/" element={<DashboardPage />} />
