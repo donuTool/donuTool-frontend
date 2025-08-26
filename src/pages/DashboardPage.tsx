@@ -5,10 +5,6 @@ import { useTranslation } from "react-i18next";
 
 export default function DashboardPage() {
   const { t } = useTranslation();
-  const USER = "박재연";
-  const LOGGEDINTIME = "21:34:04";
-  const TIMEUSED = "00:05:31";
-
   const googleId = useUserStore((state) => state.googleId);
 
   return (
@@ -21,25 +17,25 @@ export default function DashboardPage() {
           children={
             <div className="dark:text-donutool-bright flex w-full translate-x-1 flex-col font-medium text-neutral-600 transition duration-300">
               <div>
-                {t("user")}: {googleId ? googleId : USER}
+                {t("user")}: {googleId ? googleId : t("username")}
               </div>
               <div>
-                {t("loggedInTime")}: {LOGGEDINTIME}
+                {t("loggedInTime")}: {googleId ? googleId : t("infoForGuest")}
               </div>
               <div>
-                {t("usedTime")}: {TIMEUSED}
+                {t("usedTime")}: {googleId ? googleId : t("infoForGuest")}
               </div>
             </div>
           }
-          title={t("welcome", { name: USER })}
+          title={t("welcome", { name: t("username") })}
           width={70}
           height={0}
         />
         <Card
           children={
-            <>
+            <div className="pointer-events-none select-none" draggable={false}>
               <VirtualToolBar size={150} showIndicators={false} />
-            </>
+            </div>
           }
           title={t("buttonsSetting")}
           width={30}
