@@ -13,6 +13,7 @@ type UserState = {
   buttonsSetting: Button[];
   isDarkMode: boolean;
   addressOfNewTab: string;
+  isDataErased: boolean;
   setUser: (user: {
     googleId: string;
     buttonsSetting: Button[];
@@ -22,6 +23,7 @@ type UserState = {
   setButtonsSetting: (
     update: Button[] | ((prev: Button[]) => Button[]),
   ) => void;
+  setIsDataErased: (value: boolean) => void;
 };
 
 export const useUserStore = create<UserState>()(
@@ -31,6 +33,7 @@ export const useUserStore = create<UserState>()(
       buttonsSetting: [],
       isDarkMode: false,
       addressOfNewTab: "",
+      isDataErased: false,
       setUser: (user) =>
         set({
           googleId: user.googleId,
@@ -45,6 +48,7 @@ export const useUserStore = create<UserState>()(
               ? update(state.buttonsSetting)
               : update,
         })),
+      setIsDataErased: (value: boolean) => set({ isDataErased: value }),
     }),
     {
       name: "user-storage",

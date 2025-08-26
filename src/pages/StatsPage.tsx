@@ -3,9 +3,11 @@ import Card from "@/components/Card";
 import DonutBar from "@/components/graphs/DonutBar";
 import StickBars from "@/components/graphs/StickBar";
 import TimeGraph from "@/components/graphs/TimeGraph";
+import { useUserStore } from "@/stores/useUserStore";
 
 export default function StatsPage() {
   const { t } = useTranslation();
+  const { isDataErased, setIsDataErased } = useUserStore();
 
   return (
     <>
@@ -72,8 +74,15 @@ export default function StatsPage() {
         height={25}
       />
       <div className="flex w-[95%] justify-end">
-        <button className="cursor-pointer rounded-lg bg-gray-200 px-3.5 py-1 text-neutral-600">
-          {t("eraseData")}
+        <button
+          className={`dark:bg-donutool-middle dark:text-donutool-text rounded-lg bg-gray-200 px-3.5 py-1 text-neutral-600 transition duration-300 ${isDataErased ? "cursor-not-allowed" : "cursor-pointer"}`}
+          onClick={() => {
+            if (isDataErased) return;
+
+            setIsDataErased(true);
+          }}
+        >
+          {isDataErased ? t("dataErased") : t("eraseData")}
         </button>
       </div>
     </>
