@@ -8,7 +8,7 @@
   "username": "Guest",
   "infoForGuest": "Not supported when guest mode",
   "textInModal": "You are currently in guest mode.\nSome dashboard features are restricted.\nPlease log in via the extension to access the full functionality.\n(Click anywhere to start)",
-  "goToExtensionStore": "Go to Extension Store",
+  "goToExtensionStore": "Go to Chrome Web Store",
   "loggedInTime": "Logged in at",
   "usedTime": "Time used",
   "welcome": "Welcome, {{name}}!",

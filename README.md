@@ -295,6 +295,97 @@ function handleBookmarkTab() {
 이 구조를 통해 donuTool은 웹 페이지에 독립적이면서도 React와 Chrome API를 유기적으로 연결하여
 사용자 설정 변경, 버튼 인터랙션, 데이터 동기화 등 복잡한 동작을 안정적으로 구현하고 있습니다.
 
+## 2. 플로팅 툴바 비간섭성 확보
+
+웹페이지 내 요소와 툴바 UI가 겹치면서 클릭/드래그 이벤트를 방해할 가능성이 있었습니다.
+항상 pointer-events를 none으로 두면 툴바 자체를 클릭할 수 없고, 항상 활성화하면 페이지와 충돌이 발생하는 문제를 확인했습니다.
+
+해결 방법으로 elementFromPoint와 getComputedStyle을 활용하여 커서 하위 요소를 실시간 감지하고,
+툴바 hover 시에만 pointer-events: auto로 전환하도록 구현했습니다.
+
+```TypeScript
+function updatePointerEvents(toolbar: HTMLElement, x: number, y: number) {
+  const elem = document.elementFromPoint(x, y);
+  if (!elem || elem.closest('.toolbar')) {
+    toolbar.style.pointerEvents = 'auto';
+  } else {
+    toolbar.style.pointerEvents = 'none';
+  }
+}
+
+// hover시만 활성화
+toolbar.addEventListener('mouseenter', () => toolbar.style.pointerEvents = 'auto');
+toolbar.addEventListener('mouseleave', () => toolbar.style.pointerEvents = 'none');
+```
+
+이로써 웹페이지 조작 방해를 최소화하면서도, 툴바 사용 시 직관적인 피드백을 제공할 수 있었습니다.
+
+## 3. 커서 추적 및 스크롤 보정
+
+툴바가 마우스 커서를 따라다니도록 구현할 때, 스크롤 이벤트 발생 시 툴바가 튀거나 지연되어 자연스러운 따라오기가 어려웠습니다.
+단순히 mousemove 좌표만 반영하면 스크롤 변화가 무시되어 동기화가 불가했습니다.
+
+이를 해결하기 위해 mousemove와 scroll 이벤트를 동시에 감지하고, 스크롤 delta를 반영해 툴바 좌표를 보정했습니다.
+
+```TypeScript
+let cursor = { x: 0, y: 0 };
+
+document.addEventListener('mousemove', e => {
+  cursor.x = e.clientX;
+  cursor.y = e.clientY;
+  updateToolbarPosition();
+});
+
+document.addEventListener('scroll', () => {
+  updateToolbarPosition();
+});
+
+function updateToolbarPosition() {
+  const toolbar = document.querySelector('.toolbar') as HTMLElement;
+  toolbar.style.left = `${cursor.x + window.scrollX}px`;
+  toolbar.style.top = `${cursor.y + window.scrollY}px`;
+}
+```
+
+이로써 스크롤 중에도 툴바와 커서의 일체감을 유지하며, 안정적이고 직관적인 UX를 제공할 수 있었습니다.
+
+## 4. 경량 주입 전략 (MV3 기반)
+
+모든 웹 페이지에 무조건 content script를 주입하면 성능 저하와 호환성 문제가 발생할 수 있습니다.
+특히 페이지 로딩 시 불필요한 스크립트가 실행되거나, 다른 확장 프로그램 및 사이트 자체 스크립트와 충돌하는 경우가 있었습니다.
+
+이를 해결하기 위해, 다음과 같은 조건부 주입 전략을 적용했습니다:
+
+- 확장 프로그램 활성화 상태를 체크
+- 특정 도메인 화이트리스트에 포함된 사이트에서만 주입
+- document.readyState를 활용해 DOM이 완전히 로드된 후 주입
+
+```TypeScript
+// 조건부 content script 주입 예시
+function injectToolbarConditionally() {
+  const whitelist = ['example.com', 'docs.google.com', 'notion.so'];
+
+  if (!chrome.runtime.sendMessage({ action: 'isToolbarActive' })) return;
+  if (!whitelist.some(domain => location.hostname.includes(domain))) return;
+  if (document.readyState !== 'complete') return;
+
+  injectToolbar(); // 실제 툴바 주입 함수
+}
+
+// MV3 service worker에서 탭 변화 감지 시 호출
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === 'complete') {
+    chrome.scripting.executeScript({
+      target: { tabId },
+      function: injectToolbarConditionally,
+    });
+  }
+});
+```
+
+이 전략을 통해 donuTool은 불필요한 리소스 낭비를 최소화하면서도, 사용자가 실제로 툴바를 필요로 하는 페이지에서만 안정적으로 동작할 수 있도록 구현되었습니다.
+결과적으로 메모리 사용량을 줄이고 사이트 충돌 가능성을 낮추며, 성능을 최적화할 수 있었습니다.
+
 <br>
 <br>
 
