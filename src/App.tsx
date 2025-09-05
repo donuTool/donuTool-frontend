@@ -8,6 +8,7 @@ import StatsPage from "@/pages/StatsPage";
 import BackgroundPage from "@/pages/BackgroundPage";
 import QuestionPage from "@/pages/QuestionPage";
 import AlertModal from "@/components/AlertModal";
+import MessageForMobile from "@/components/MessageForMobile";
 import "@/utils/i18n.ts";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <>
+      <MessageForMobile />
       <AlertModal />
       <BackgroundPage>
         <Routes>

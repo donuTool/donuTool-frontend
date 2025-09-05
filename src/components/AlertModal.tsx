@@ -22,7 +22,7 @@ export default function AlertModal() {
       }}
     >
       <div
-        className={`dark:bg-donutool-middle dark:text-donutool-bright flex transform flex-col items-center justify-center gap-6 rounded-2xl bg-gray-200 px-[5%] py-[3%] text-center text-lg font-medium whitespace-pre-line text-neutral-600 transition-transform duration-300 ${isVisible ? "scale-100" : "scale-95"} `}
+        className={`dark:bg-donutool-middle dark:text-donutool-bright flex transform flex-col items-center justify-center gap-[1vw] rounded-[1vw] bg-gray-200 px-[4vw] py-[2vw] text-center text-[1vw] font-medium whitespace-pre-line text-neutral-600 transition-transform duration-300 ${isVisible ? "scale-100" : "scale-95"} `}
       >
         {t("textInModal")}
         <ReusableButton

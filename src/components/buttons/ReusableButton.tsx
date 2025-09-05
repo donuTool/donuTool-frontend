@@ -6,7 +6,7 @@ type ReusableButtonProps = {
 export default function ReusableButton({ name, onClick }: ReusableButtonProps) {
   return (
     <div
-      className="dark:bg-donutool-middle dark:text-donutool-text cursor-pointer rounded-lg bg-gray-400 px-[5%] py-[1%] text-neutral-100 shadow-md transition duration-300"
+      className="dark:bg-donutool-middle dark:text-donutool-text cursor-pointer rounded-[0.5vw] bg-gray-400 px-[1vw] py-[0.2vw] text-neutral-100 shadow-md transition duration-300"
       onClick={(e) => {
         e.stopPropagation();
         onClick();
