@@ -1,24 +1,28 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useUserStore } from "@/stores/useUserStore";
 import ReusableButton from "@/components/buttons/ReusableButton";
 
 export default function AlertModal() {
   const { t } = useTranslation();
-  const [isModalClosed, setIsModalClosed] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const googleId = useUserStore((state) => state.googleId);
+  const [shouldRender, setShouldRender] = useState(false);
+  const [isVisible, setIsVisible] = useState(!googleId);
 
   useEffect(() => {
-    setIsVisible(true);
-  }, []);
+    if (!googleId) {
+      setIsVisible(true);
+    }
+  }, [googleId]);
 
-  if (isModalClosed) return null;
+  if (shouldRender) return null;
 
   return (
     <div
       className={`absolute z-50 flex h-full w-full cursor-pointer items-center justify-center bg-black/50 backdrop-blur-xs transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"} `}
       onClick={() => {
         setIsVisible(false);
-        setTimeout(() => setIsModalClosed(true), 300);
+        setTimeout(() => setShouldRender(true), 300);
       }}
     >
       <div
