@@ -27,7 +27,7 @@ export default function DashboardPage() {
               </div>
             </div>
           }
-          title={t("welcome", { name: t("username") })}
+          title={t("welcome", { name: googleId ? googleId : t("username") })}
           width={70}
           height={0}
         />

@@ -10,8 +10,13 @@ export default function AlertModal() {
   const [isVisible, setIsVisible] = useState(!googleId);
 
   useEffect(() => {
+    if (googleId === undefined) return;
+
     if (!googleId) {
       setIsVisible(true);
+    } else {
+      setIsVisible(false);
+      setShouldRender(true);
     }
   }, [googleId]);
 

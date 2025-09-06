@@ -9,7 +9,7 @@ interface Button {
   left?: number;
 }
 type UserState = {
-  googleId: string | null;
+  googleId: string | undefined;
   buttonsSetting: Button[];
   isDarkMode: boolean;
   addressOfNewTab: string;
@@ -29,7 +29,7 @@ type UserState = {
 export const useUserStore = create<UserState>()(
   persist(
     (set) => ({
-      googleId: null,
+      googleId: undefined,
       buttonsSetting: [],
       isDarkMode: false,
       addressOfNewTab: "",
