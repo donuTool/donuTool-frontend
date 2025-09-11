@@ -1,5 +1,6 @@
 {
   "alertForMobile": "Our site is not available on mobile devices.\nPlease access it from a desktop.",
+  "alertForWidthShort": "The screen is too narrow for optimal use.\nPlease use a wider screen for a better experience.",
   "dashboard": "Dashboard",
   "help": "Help",
   "account": "Account",
