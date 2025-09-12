@@ -7,7 +7,12 @@ import { useUserStore } from "@/stores/useUserStore";
 
 export default function StatsPage() {
   const { t } = useTranslation();
-  const { isDataErased, setIsDataErased } = useUserStore();
+  const { isDataErased, buttonClickCounts, setIsDataErased } = useUserStore();
+
+  const buttonsSorted = Object.entries(buttonClickCounts).sort(
+    (a, b) => b[1] - a[1],
+  );
+  const topThreeButtons = buttonsSorted.slice(0, 3);
 
   return (
     <>
@@ -18,11 +23,19 @@ export default function StatsPage() {
         <Card
           children={
             <StickBars
-              values={Array.from(
-                { length: 3 },
-                () => Math.floor(Math.random() * 100) + 1,
-              )}
-              names={["뒤로 가기", "새 탭", "화면 캡쳐"]}
+              values={
+                buttonsSorted.length > 0
+                  ? topThreeButtons.map(([, value]) => value)
+                  : Array.from(
+                      { length: 3 },
+                      () => Math.floor(Math.random() * 100) + 1,
+                    )
+              }
+              names={
+                buttonsSorted.length > 0
+                  ? topThreeButtons.map(([key]) => t(`buttonsLabels.${key}`))
+                  : ["뒤로 가기", "새 탭", "화면 캡쳐"]
+              }
               axis="y"
             />
           }
@@ -33,10 +46,19 @@ export default function StatsPage() {
         <Card
           children={
             <DonutBar
-              values={Array.from(
-                { length: 5 },
-                () => Math.floor(Math.random() * 100) + 1,
-              )}
+              values={
+                buttonsSorted.length > 0
+                  ? buttonsSorted.map(([, value]) => value)
+                  : Array.from(
+                      { length: 5 },
+                      () => Math.floor(Math.random() * 100) + 1,
+                    )
+              }
+              names={
+                buttonsSorted.length > 0
+                  ? buttonsSorted.map(([key]) => t(`buttonsLabels.${key}`))
+                  : []
+              }
             />
           }
           title={t("recentUsedButtons")}

@@ -10,12 +10,14 @@ interface Button {
 }
 type UserState = {
   googleId: string | undefined;
+  buttonClickCounts: object;
   buttonsSetting: Button[];
   isDarkMode: boolean;
   addressOfNewTab: string;
   isDataErased: boolean;
   setUser: (user: {
     googleId: string;
+    buttonClickCounts: object;
     buttonsSetting: Button[];
     isDarkMode: boolean;
     addressOfNewTab: string;
@@ -30,6 +32,7 @@ export const useUserStore = create<UserState>()(
   persist(
     (set) => ({
       googleId: undefined,
+      buttonClickCounts: {},
       buttonsSetting: [],
       isDarkMode: false,
       addressOfNewTab: "",
@@ -37,6 +40,7 @@ export const useUserStore = create<UserState>()(
       setUser: (user) =>
         set({
           googleId: user.googleId,
+          buttonClickCounts: user.buttonClickCounts,
           buttonsSetting: user.buttonsSetting,
           isDarkMode: user.isDarkMode,
           addressOfNewTab: user.addressOfNewTab,

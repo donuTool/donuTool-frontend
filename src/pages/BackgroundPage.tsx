@@ -31,6 +31,7 @@ export default function BackgroundPage({
           const userData = await fetchUser(googleId);
           setUser({
             googleId: userData.googleId,
+            buttonClickCounts: userData.buttonClickCounts,
             buttonsSetting: userData.buttonsSetting,
             isDarkMode: userData.isDarkMode,
             addressOfNewTab: userData.addressOfNewTab,

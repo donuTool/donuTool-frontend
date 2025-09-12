@@ -6,22 +6,19 @@ ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 type DonutBarProps = {
   values: number[];
+  names: string[];
 };
 
 const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"];
 
-export default function DonutBar({ values }: DonutBarProps) {
-  const safeValues = values.slice(0, 5);
-
-  const total = safeValues.reduce((a, b) => a + b, 0);
+export default function DonutBar({ values, names }: DonutBarProps) {
+  const total = values.reduce((a, b) => a + b, 0);
 
   const normalizedValues =
-    total > 100
-      ? safeValues.map((v) => Math.round((v * 100) / total))
-      : safeValues;
+    total > 100 ? values.map((v) => Math.round((v * 100) / total)) : values;
 
   const data = {
-    labels: normalizedValues.map((_, idx) => `항목 ${idx + 1}`),
+    labels: names,
     datasets: [
       {
         label: "횟수",
@@ -51,7 +48,7 @@ export default function DonutBar({ values }: DonutBarProps) {
   };
 
   return (
-    <div className="h-45 w-45 translate-y-4 saturate-50">
+    <div className="h-[90%] w-[90%] translate-y-4 saturate-50">
       <Doughnut data={data} options={options} />
     </div>
   );
