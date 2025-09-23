@@ -22,7 +22,7 @@ export default function ButtonsInList({ size }: { size: number }) {
               zIndex: 990,
             }}
           >
-            <DraggableButton button={button} scale={scale} />
+            <DraggableButton button={button} />
           </DroppableArea>
         ))}
     </div>
