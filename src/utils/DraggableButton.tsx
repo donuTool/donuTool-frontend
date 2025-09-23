@@ -1,13 +1,7 @@
 import { useDraggable } from "@dnd-kit/core";
 import type { Button } from "@/stores/types";
 
-export default function DraggableButton({
-  button,
-  scale,
-}: {
-  button: Button;
-  scale: number;
-}) {
+export default function DraggableButton({ button }: { button: Button }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: button.id,
   });
@@ -16,14 +10,8 @@ export default function DraggableButton({
     transform: transform
       ? `translate(${transform.x}px, ${transform.y}px)`
       : undefined,
-    top:
-      button.status === "IN_TOOLBAR"
-        ? `${(button.top ?? 0) * scale}px`
-        : undefined,
-    left:
-      button.status === "IN_TOOLBAR"
-        ? `${(button.top ?? 0) * scale}px`
-        : undefined,
+    top: button.status === "IN_TOOLBAR" ? `${button.top ?? 0}vw` : undefined,
+    left: button.status === "IN_TOOLBAR" ? `${button.left ?? 0}vw` : undefined,
   };
 
   return (

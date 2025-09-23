@@ -18,27 +18,27 @@ export default function ButtonIndicator({
   return (
     <>
       <div
-        className="dark:bg-donutool-bright absolute z-10 h-0.5 w-[4vw] bg-neutral-600 transition duration-300"
+        className="dark:bg-donutool-bright absolute z-10 h-[0.1vw] w-[4vw] bg-neutral-600 transition duration-300"
         style={{
-          top: index !== 3 ? `${top}px` : `${top + 20}px`,
+          top: index !== 3 ? `${top + 2.5}vw` : `${top + 3.6}vw`,
           left:
             index < 3
-              ? `${left}px`
+              ? `${left + 5.5}vw`
               : index === 4
-                ? `${-left + 30}px`
-                : `${-left + 158}px`,
+                ? `${-left + 25.5}vw`
+                : `${-left + 35}vw`,
         }}
       ></div>
       <div
-        className="dark:text-donutool-bright absolute z-10 w-full font-semibold text-neutral-600 transition duration-300"
+        className="dark:text-donutool-bright absolute z-10 w-full text-[1.1vw] font-semibold text-neutral-600 transition duration-300"
         style={{
-          top: index !== 3 ? `${top - 12}px` : `${top + 8}px`,
+          top: index !== 3 ? `${top + 1.7}vw` : `${top + 2.7}vw`,
           left:
             index < 3
-              ? `${left + 85}px`
+              ? `${left + 10}vw`
               : index === 4
-                ? `${-(left + 85)}px`
-                : `${-left + 42}px`,
+                ? `${-(left - 18)}vw`
+                : `${-left + 27.5}vw`,
         }}
       >
         {t(`buttonsLabels.${id}`)}

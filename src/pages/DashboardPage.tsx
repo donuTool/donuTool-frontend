@@ -38,7 +38,7 @@ export default function DashboardPage() {
                 className="pointer-events-none select-none"
                 draggable={false}
               >
-                <VirtualToolBar size={150} showIndicators={false} />
+                <VirtualToolBar size={8} showIndicators={false} />
               </div>
             }
             title={t("buttonsSetting")}

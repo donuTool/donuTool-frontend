@@ -89,7 +89,7 @@ export default function ButtonSettingsPage() {
         />
         <DndContext onDragEnd={handleDragEnd}>
           <Card
-            children={<VirtualToolBar size={250} showIndicators={true} />}
+            children={<VirtualToolBar size={12} showIndicators={true} />}
             title={t("buttonsSettings")}
             width={95}
             height={40}
