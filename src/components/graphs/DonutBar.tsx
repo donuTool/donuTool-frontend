@@ -48,7 +48,7 @@ export default function DonutBar({ values, names }: DonutBarProps) {
   };
 
   return (
-    <div className="h-[90%] w-[90%] translate-y-4 saturate-50">
+    <div className="h-[70%] w-[70%] translate-y-4 saturate-50">
       <Doughnut data={data} options={options} />
     </div>
   );

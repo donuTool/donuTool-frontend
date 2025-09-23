@@ -30,15 +30,16 @@ export default function ButtonIndicator({
         }}
       ></div>
       <div
-        className="dark:text-donutool-bright absolute z-10 w-full text-[1.1vw] font-semibold text-neutral-600 transition duration-300"
+        className="dark:text-donutool-bright absolute z-10 text-[1.1vw] font-semibold text-neutral-600 transition duration-300"
         style={{
           top: index !== 3 ? `${top + 1.7}vw` : `${top + 2.7}vw`,
-          left:
-            index < 3
-              ? `${left + 10}vw`
-              : index === 4
-                ? `${-(left - 18)}vw`
-                : `${-left + 27.5}vw`,
+          left: index < 3 ? `${left + 10}vw` : undefined,
+          right:
+            index >= 3
+              ? index === 4
+                ? `${left + 22.5}vw`
+                : `${left + 13}vw`
+              : undefined,
         }}
       >
         {t(`buttonsLabels.${id}`)}
