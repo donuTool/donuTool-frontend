@@ -72,32 +72,36 @@ export default function ButtonSettingsPage() {
       <div className="dark:text-donutool-bright mt-5 text-2xl font-semibold text-neutral-600 transition duration-300">
         {t("settings")}
       </div>
-      <Card
-        children={<ToggleButton onClick={toggleToolBar} state={isToolBarOn} />}
-        title={t("toolBar")}
-        width={95}
-        height={5}
-      />
-      <Card
-        children={<ToggleButton onClick={toggleTheme} state={isDarkMode} />}
-        title={t("darkTheme")}
-        width={95}
-        height={5}
-      />
-      <DndContext onDragEnd={handleDragEnd}>
+      <div className="mb-[3%] flex h-full w-full flex-col items-center justify-between">
         <Card
-          children={<VirtualToolBar size={250} showIndicators={true} />}
-          title={t("buttonsSettings")}
+          children={
+            <ToggleButton onClick={toggleToolBar} state={isToolBarOn} />
+          }
+          title={t("toolBar")}
           width={95}
-          height={40}
+          height={10}
         />
         <Card
-          children={<ButtonsInList size={250} />}
-          title={t("buttonsList")}
+          children={<ToggleButton onClick={toggleTheme} state={isDarkMode} />}
+          title={t("darkTheme")}
           width={95}
-          height={32.5}
+          height={10}
         />
-      </DndContext>
+        <DndContext onDragEnd={handleDragEnd}>
+          <Card
+            children={<VirtualToolBar size={250} showIndicators={true} />}
+            title={t("buttonsSettings")}
+            width={95}
+            height={40}
+          />
+          <Card
+            children={<ButtonsInList size={250} />}
+            title={t("buttonsList")}
+            width={95}
+            height={35}
+          />
+        </DndContext>
+      </div>
     </>
   );
 }

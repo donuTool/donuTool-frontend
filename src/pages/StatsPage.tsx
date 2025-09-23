@@ -19,85 +19,87 @@ export default function StatsPage() {
       <div className="dark:text-donutool-bright mt-5 text-2xl font-semibold text-neutral-600 transition duration-300">
         {t("stats")}
       </div>
-      <div className="flex h-[30%] w-[95%] flex-row justify-center gap-[2.5%]">
+      <div className="flex h-[85%] w-full flex-col items-center justify-between">
+        <div className="flex h-[35%] w-[95%] flex-row justify-center gap-[2.5%]">
+          <Card
+            children={
+              <StickBars
+                values={
+                  buttonsSorted.length > 0
+                    ? topThreeButtons.map(([, value]) => value)
+                    : Array.from(
+                        { length: 3 },
+                        () => Math.floor(Math.random() * 100) + 1,
+                      )
+                }
+                names={
+                  buttonsSorted.length > 0
+                    ? topThreeButtons.map(([key]) => t(`buttonsLabels.${key}`))
+                    : ["뒤로 가기", "새 탭", "화면 캡쳐"]
+                }
+                axis="y"
+              />
+            }
+            title={t("topThreeButtons")}
+            width={50}
+            height={0}
+          />
+          <Card
+            children={
+              <DonutBar
+                values={
+                  buttonsSorted.length > 0
+                    ? buttonsSorted.map(([, value]) => value)
+                    : Array.from(
+                        { length: 5 },
+                        () => Math.floor(Math.random() * 100) + 1,
+                      )
+                }
+                names={
+                  buttonsSorted.length > 0
+                    ? buttonsSorted.map(([key]) => t(`buttonsLabels.${key}`))
+                    : []
+                }
+              />
+            }
+            title={t("recentUsedButtons")}
+            width={50}
+            height={0}
+          />
+        </div>
+        <Card
+          children={
+            <TimeGraph
+              values={Array.from(
+                { length: 24 },
+                () => Math.floor(Math.random() * 22) + 1,
+              )}
+              color="#FF6384"
+            />
+          }
+          title={t("usedTimePerDay")}
+          width={95}
+          height={30}
+        />
         <Card
           children={
             <StickBars
-              values={
-                buttonsSorted.length > 0
-                  ? topThreeButtons.map(([, value]) => value)
-                  : Array.from(
-                      { length: 3 },
-                      () => Math.floor(Math.random() * 100) + 1,
-                    )
-              }
-              names={
-                buttonsSorted.length > 0
-                  ? topThreeButtons.map(([key]) => t(`buttonsLabels.${key}`))
-                  : ["뒤로 가기", "새 탭", "화면 캡쳐"]
-              }
-              axis="y"
+              values={Array.from(
+                { length: 3 },
+                () => Math.floor(Math.random() * 100) + 1,
+              )}
+              names={["네이버", "Google", "YouTube"]}
+              axis="x"
             />
           }
-          title={t("topThreeButtons")}
-          width={50}
-          height={0}
-        />
-        <Card
-          children={
-            <DonutBar
-              values={
-                buttonsSorted.length > 0
-                  ? buttonsSorted.map(([, value]) => value)
-                  : Array.from(
-                      { length: 5 },
-                      () => Math.floor(Math.random() * 100) + 1,
-                    )
-              }
-              names={
-                buttonsSorted.length > 0
-                  ? buttonsSorted.map(([key]) => t(`buttonsLabels.${key}`))
-                  : []
-              }
-            />
-          }
-          title={t("recentUsedButtons")}
-          width={50}
-          height={0}
+          title={t("frequentlyVisitedWebsites")}
+          width={95}
+          height={30}
         />
       </div>
-      <Card
-        children={
-          <TimeGraph
-            values={Array.from(
-              { length: 24 },
-              () => Math.floor(Math.random() * 22) + 1,
-            )}
-            color="#FF6384"
-          />
-        }
-        title={t("usedTimePerDay")}
-        width={95}
-        height={25}
-      />
-      <Card
-        children={
-          <StickBars
-            values={Array.from(
-              { length: 3 },
-              () => Math.floor(Math.random() * 100) + 1,
-            )}
-            names={["네이버", "Google", "YouTube"]}
-            axis="x"
-          />
-        }
-        title={t("frequentlyVisitedWebsites")}
-        width={95}
-        height={25}
-      />
       <div className="flex w-[95%] justify-end">
         <button
-          className={`dark:bg-donutool-middle dark:text-donutool-text rounded-lg bg-gray-200 px-3.5 py-1 font-semibold text-neutral-600 transition duration-300 ${isDataErased ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
+          className={`dark:bg-donutool-middle dark:text-donutool-text rounded-[0.8vw] bg-gray-200 px-[1vw] py-[0.2vw] font-semibold text-neutral-600 transition duration-300 ${isDataErased ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
           onClick={() => {
             if (isDataErased) return;
 
