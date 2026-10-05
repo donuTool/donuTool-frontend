@@ -1,12 +1,6 @@
 import { create } from "zustand";
+import type { Button } from "@/stores/types";
 
-interface Button {
-  id: string;
-  image: string;
-  status: string;
-  top?: number;
-  left?: number;
-}
 
 interface ButtonStore {
   buttons: Button[];
