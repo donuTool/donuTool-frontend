@@ -5,6 +5,7 @@ import type { DragEndEvent } from "@dnd-kit/core";
 import { useButtonStore } from "@/stores/useButtonStore";
 import { useThemeStore } from "@/stores/useThemeStore";
 import { useUserStore } from "@/stores/useUserStore";
+import { apiRequest } from "@/api/client";
 import type { Button } from "@/stores/types";
 import Card from "@/components/Card";
 import ToggleButton from "@/components/buttons/ToggleButton";
@@ -16,7 +17,7 @@ export default function ButtonSettingsPage() {
 
   const [isToolBarOn, setIsToolBarOn] = useState(true);
   const { isDarkMode, setIsDarkMode } = useThemeStore();
-  const { googleId, buttonsSetting, setButtonsSetting } = useUserStore();
+  const { buttonsSetting, setButtonsSetting } = useUserStore();
   const setButtons = useButtonStore((state) => state.setButtons);
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -33,24 +34,28 @@ export default function ButtonSettingsPage() {
       if (activeIndex < 0 || overIndex < 0) return prev;
 
       const newButtons = [...prev];
-      const temp = {
-        id: newButtons[activeIndex].id,
-        image: newButtons[activeIndex].image,
+      const activeButton = prev[activeIndex];
+      const overButton = prev[overIndex];
+      newButtons[activeIndex] = {
+        ...activeButton,
+        id: overButton.id,
+        image: overButton.image,
       };
-      newButtons[activeIndex].id = newButtons[overIndex].id;
-      newButtons[activeIndex].image = newButtons[overIndex].image;
-      newButtons[overIndex].id = temp.id;
-      newButtons[overIndex].image = temp.image;
+      newButtons[overIndex] = {
+        ...overButton,
+        id: activeButton.id,
+        image: activeButton.image,
+      };
 
       return newButtons;
     };
 
     if (buttonsSetting.length > 0) {
-      setButtonsSetting(updateButtons);
-      fetch(`http://localhost:3001/api/user/${googleId}`, {
+      const newButtonsSetting = updateButtons(buttonsSetting);
+      setButtonsSetting(newButtonsSetting);
+      apiRequest("/api/user/me", {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ buttonsSetting: updateButtons }),
+        body: { buttonsSetting: newButtonsSetting },
       }).catch((err) =>
         console.error("Failed to update buttonsSetting to server:", err),
       );
