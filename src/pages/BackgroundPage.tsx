@@ -21,27 +21,25 @@ export default function BackgroundPage({
   const navigate = useNavigate();
 
   const setUser = useUserStore((state) => state.setUser);
-  const params = new URLSearchParams(window.location.search);
-  const googleId = params.get("googleId");
 
   useEffect(() => {
-    if (googleId) {
-      (async () => {
-        try {
-          const userData = await fetchUser(googleId);
-          setUser({
-            googleId: userData.googleId,
-            buttonClickCounts: userData.buttonClickCounts,
-            buttonsSetting: userData.buttonsSetting,
-            isDarkMode: userData.isDarkMode,
-            addressOfNewTab: userData.addressOfNewTab,
-          });
-        } catch (error) {
-          console.error("Failed to fetch user data:", error);
-        }
-      })();
-    }
-  });
+    (async () => {
+      try {
+        const userData = await fetchUser();
+        if (!userData) return;
+
+        setUser({
+          googleId: userData.googleId,
+          buttonClickCounts: userData.buttonClickCounts,
+          buttonsSetting: userData.buttonsSetting,
+          isDarkMode: userData.isDarkMode,
+          addressOfNewTab: userData.addressOfNewTab,
+        });
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    })();
+  }, [setUser]);
 
   return (
     <div className="dark:bg-donutool-bg absolute -z-50 flex h-full w-full items-center justify-center bg-gray-300 transition duration-300">

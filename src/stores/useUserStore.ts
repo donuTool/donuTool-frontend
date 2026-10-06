@@ -1,13 +1,7 @@
 import { create } from "zustand";
+import type { Button } from "@/stores/types";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-interface Button {
-  id: string;
-  image: string;
-  status: string;
-  top?: number;
-  left?: number;
-}
 type UserState = {
   googleId: string | undefined;
   buttonClickCounts: object;
