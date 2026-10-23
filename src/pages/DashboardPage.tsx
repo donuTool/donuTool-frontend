@@ -4,8 +4,15 @@ import { useUserStore } from "@/stores/useUserStore";
 import { useTranslation } from "react-i18next";
 
 export default function DashboardPage() {
-  const { t } = useTranslation();
-  const googleId = useUserStore((state) => state.googleId);
+  const { t, i18n } = useTranslation();
+  const { isLoggedIn, createdAt, buttonClickCounts } = useUserStore();
+  const totalClicks = Object.values(buttonClickCounts).reduce(
+    (sum, count) => sum + count,
+    0,
+  );
+  const joinedAt = createdAt
+    ? new Date(createdAt).toLocaleDateString(i18n.language)
+    : null;
 
   return (
     <>
@@ -18,17 +25,18 @@ export default function DashboardPage() {
             children={
               <div className="dark:text-donutool-bright ml-[1.5vw] flex w-full flex-col font-medium text-neutral-600 transition duration-300">
                 <div>
-                  {t("user")}: {googleId ? googleId : t("username")}
+                  {t("user")}: {isLoggedIn ? t("googleUser") : t("username")}
                 </div>
                 <div>
-                  {t("loggedInTime")}: {googleId ? googleId : t("infoForGuest")}
+                  {t("joinedAt")}:{" "}
+                  {isLoggedIn ? (joinedAt ?? "-") : t("infoForGuest")}
                 </div>
                 <div>
-                  {t("usedTime")}: {googleId ? googleId : t("infoForGuest")}
+                  {t("totalClicks")}: {totalClicks.toLocaleString(i18n.language)}
                 </div>
               </div>
             }
-            title={t("welcome", { name: googleId ? googleId : t("username") })}
+            title={isLoggedIn ? t("welcomeBack") : t("welcome", { name: t("username") })}
             width={70}
             height={0}
           />

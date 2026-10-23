@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/stores/useUserStore";
 import ReusableButton from "@/components/buttons/ReusableButton";
@@ -7,22 +7,9 @@ import ArrowLeftIcon from "@/assets/arrow-left.svg";
 
 export default function AlertModal() {
   const { t } = useTranslation();
-  const googleId = useUserStore((state) => state.googleId);
-  const [shouldRender, setShouldRender] = useState(false);
-  const [isVisible, setIsVisible] = useState(!googleId);
+  const isLoaded = useUserStore((state) => state.isLoaded);
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const [isCollapsed, setIsCollapsed] = useState(false);
-
-  useEffect(() => {
-    if (googleId === undefined) return;
-
-    if (!googleId) {
-      setIsVisible(true);
-      setIsCollapsed(false);
-    } else {
-      setIsVisible(false);
-      setShouldRender(true);
-    }
-  }, [googleId]);
 
   const handleClose = () => {
     setIsCollapsed(true);
@@ -32,7 +19,8 @@ export default function AlertModal() {
     setIsCollapsed(false);
   };
 
-  if (shouldRender) return null;
+  // 불러오기가 끝난 뒤 게스트일 때만 안내를 띄운다
+  const isVisible = isLoaded && !isLoggedIn;
 
   return (
     isVisible && (

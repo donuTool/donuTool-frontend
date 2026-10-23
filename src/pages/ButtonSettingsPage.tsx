@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DndContext } from "@dnd-kit/core";
 import type { DragEndEvent } from "@dnd-kit/core";
-import { useButtonStore } from "@/stores/useButtonStore";
-import { useThemeStore } from "@/stores/useThemeStore";
 import { useUserStore } from "@/stores/useUserStore";
-import { apiRequest } from "@/api/client";
+import { useToggleTheme } from "@/hooks/useToggleTheme";
 import type { Button } from "@/stores/types";
 import Card from "@/components/Card";
 import ToggleButton from "@/components/buttons/ToggleButton";
@@ -15,10 +12,10 @@ import ButtonsInList from "@/components/ButtonsInList";
 export default function ButtonSettingsPage() {
   const { t } = useTranslation();
 
-  const [isToolBarOn, setIsToolBarOn] = useState(true);
-  const { isDarkMode, setIsDarkMode } = useThemeStore();
-  const { buttonsSetting, setButtonsSetting } = useUserStore();
-  const setButtons = useButtonStore((state) => state.setButtons);
+  const { isDarkMode, toggleTheme } = useToggleTheme();
+  const { source, donuToolActive, buttonsSetting, saveSettings } = useUserStore();
+  // 툴바 on/off는 새 버전 확장프로그램을 통해서만 바꿀 수 있다
+  const canToggleToolBar = source === "extension";
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -50,26 +47,14 @@ export default function ButtonSettingsPage() {
       return newButtons;
     };
 
-    if (buttonsSetting.length > 0) {
-      const newButtonsSetting = updateButtons(buttonsSetting);
-      setButtonsSetting(newButtonsSetting);
-      apiRequest("/api/user/me", {
-        method: "PUT",
-        body: { buttonsSetting: newButtonsSetting },
-      }).catch((err) =>
-        console.error("Failed to update buttonsSetting to server:", err),
-      );
-    } else {
-      setButtons(updateButtons);
-    }
+    const newButtonsSetting = updateButtons(buttonsSetting);
+    if (newButtonsSetting === buttonsSetting) return;
+    saveSettings({ buttonsSetting: newButtonsSetting }).catch(() => {});
   };
 
   const toggleToolBar = () => {
-    setIsToolBarOn(!isToolBarOn);
-  };
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
+    if (!canToggleToolBar) return;
+    saveSettings({ donuToolActive: !donuToolActive }).catch(() => {});
   };
 
   return (
@@ -80,7 +65,11 @@ export default function ButtonSettingsPage() {
       <div className="mb-[3%] flex h-full w-full flex-col items-center justify-between">
         <Card
           children={
-            <ToggleButton onClick={toggleToolBar} state={isToolBarOn} />
+            <ToggleButton
+              onClick={toggleToolBar}
+              state={canToggleToolBar && donuToolActive}
+              disabled={!canToggleToolBar}
+            />
           }
           title={t("toolBar")}
           width={95}

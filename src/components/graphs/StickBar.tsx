@@ -21,15 +21,16 @@ ChartJS.register(
 interface StickBarsProps {
   values: number[];
   names: string[];
+  label: string;
   axis: "x" | "y";
 }
 
-export default function StickBars({ values, names, axis }: StickBarsProps) {
+export default function StickBars({ values, names, label, axis }: StickBarsProps) {
   const data = {
     labels: names,
     datasets: [
       {
-        label: "횟수",
+        label,
         data: values,
         backgroundColor: ["#60A5FA", "#34D399", "#FBBF24"],
         borderRadius: 4,
@@ -45,7 +46,7 @@ export default function StickBars({ values, names, axis }: StickBarsProps) {
     scales: {
       x: {
         display: true,
-        max: 100,
+        beginAtZero: true,
         grid: {
           display: false,
         },
@@ -57,7 +58,7 @@ export default function StickBars({ values, names, axis }: StickBarsProps) {
       },
       y: {
         display: true,
-        max: 100,
+        beginAtZero: true,
         grid: {
           display: false,
         },

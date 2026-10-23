@@ -12,7 +12,8 @@ interface Window {
       sendMessage: (
         extensionId: string,
         message: unknown,
-        callback: (response?: { token?: string | null }) => void,
+        // 응답 형태는 메시지마다 달라 호출하는 쪽에서 좁힌다
+        callback: (response?: any) => void, // eslint-disable-line @typescript-eslint/no-explicit-any
       ) => void;
     };
   };

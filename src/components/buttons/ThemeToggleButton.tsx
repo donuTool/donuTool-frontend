@@ -1,13 +1,9 @@
-import { useThemeStore } from "@/stores/useThemeStore";
+import { useToggleTheme } from "@/hooks/useToggleTheme";
 import SunIcon from "@/assets/sun.svg?react";
 import MoonIcon from "@/assets/moon.svg?react";
 
 export default function ThemeToggleButton() {
-  const { isDarkMode, setIsDarkMode } = useThemeStore();
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  const { isDarkMode, toggleTheme } = useToggleTheme();
 
   return (
     <button

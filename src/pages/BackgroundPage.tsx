@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUserStore } from "@/stores/useUserStore";
 import { useTranslation } from "react-i18next";
-import { fetchUser } from "@/utils/fetchUser";
+import { useThemeStore } from "@/stores/useThemeStore";
 import ThemeToggleButton from "@/components/buttons/ThemeToggleButton";
 import PageNavButton from "@/components/buttons/PageNavButton";
 import DashboardIcon from "@/assets/dashboard.svg?react";
@@ -20,26 +20,16 @@ export default function BackgroundPage({
   const location = useLocation();
   const navigate = useNavigate();
 
-  const setUser = useUserStore((state) => state.setUser);
+  const load = useUserStore((state) => state.load);
+  const setIsDarkMode = useThemeStore((state) => state.setIsDarkMode);
 
+  // 확장프로그램(또는 서버)에 저장된 설정을 불러오고, 저장된 테마를 적용한다
   useEffect(() => {
-    (async () => {
-      try {
-        const userData = await fetchUser();
-        if (!userData) return;
-
-        setUser({
-          googleId: userData.googleId,
-          buttonClickCounts: userData.buttonClickCounts,
-          buttonsSetting: userData.buttonsSetting,
-          isDarkMode: userData.isDarkMode,
-          addressOfNewTab: userData.addressOfNewTab,
-        });
-      } catch (error) {
-        console.error("Failed to fetch user data:", error);
-      }
-    })();
-  }, [setUser]);
+    load().then(() => {
+      const { isDarkMode } = useUserStore.getState();
+      if (typeof isDarkMode === "boolean") setIsDarkMode(isDarkMode);
+    });
+  }, [load, setIsDarkMode]);
 
   return (
     <div className="dark:bg-donutool-bg absolute -z-50 flex h-full w-full items-center justify-center bg-gray-300 transition duration-300">

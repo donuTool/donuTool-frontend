@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Card from "@/components/Card";
+import { useUserStore } from "@/stores/useUserStore";
 import PlayIcon from "@/assets/circle-play.svg?react";
 
 export default function InstructionsPage() {
   const { t } = useTranslation();
+  const extensionVersion = useUserStore((state) => state.extensionVersion);
 
   return (
     <>
@@ -19,7 +21,7 @@ export default function InstructionsPage() {
                 to="/help/question/1"
                 className="dark:text-donutool-bright dark:bg-donutool-button flex h-[15%] w-[95%] items-center justify-start rounded-2xl bg-white px-5 font-semibold text-neutral-600 transition duration-300"
               >
-                Q1. 문제가 발생했을 때 문의는 어떻게 하나요?
+                Q1. {t("faqQ1")}
               </Link>
               <Link
                 to="/help/question/2"
@@ -73,7 +75,7 @@ export default function InstructionsPage() {
             <Card
               children={
                 <div className="dark:text-donutool-bright translate-y-3 font-semibold text-neutral-600 transition duration-300">
-                  1.0.0
+                  {extensionVersion ?? "-"}
                 </div>
               }
               title={t("version")}

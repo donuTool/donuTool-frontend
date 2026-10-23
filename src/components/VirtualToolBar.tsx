@@ -1,6 +1,5 @@
 import React from "react";
 import { useUserStore } from "@/stores/useUserStore";
-import { useButtonStore } from "@/stores/useButtonStore";
 import donuToolBar from "@/assets/donuToolBar.png";
 import DroppableArea from "@/utils/DroppableArea";
 import DraggableButton from "@/utils/DraggableButton";
@@ -14,7 +13,6 @@ export default function VirtualToolBar({
   showIndicators: boolean;
 }) {
   const buttonsSetting = useUserStore((state) => state.buttonsSetting);
-  const buttons = useButtonStore((state) => state.buttons);
   const scale = size / 80;
 
   return (
@@ -24,7 +22,7 @@ export default function VirtualToolBar({
         draggable={false}
         className={`h-[${size + 33}%] w-[${size + 33}%] brightness-[1.15]`}
       />
-      {(buttonsSetting.length > 0 ? buttonsSetting : buttons)
+      {buttonsSetting
         .filter((button) => button.status === "IN_TOOLBAR")
         .map((button) => (
           <React.Fragment key={button.id}>
@@ -45,7 +43,7 @@ export default function VirtualToolBar({
           </React.Fragment>
         ))}
       {showIndicators &&
-        (buttonsSetting.length > 0 ? buttonsSetting : buttons)
+        buttonsSetting
           .filter((button) => button.status === "IN_TOOLBAR")
           .map((button, index) => (
             <React.Fragment key={button.id}>
